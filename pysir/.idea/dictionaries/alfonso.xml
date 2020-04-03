@@ -2,6 +2,8 @@
   <dictionary name="alfonso">
     <words>
       <w>archivo</w>
+      <w>datos</w>
+      <w>lector</w>
     </words>
   </dictionary>
 </component>

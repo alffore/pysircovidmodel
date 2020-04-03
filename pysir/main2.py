@@ -5,6 +5,7 @@ https://en.wikipedia.org/wiki/Compartmental_models_in_epidemiology
 https://www.youtube.com/watch?v=Qrp40ck3WpI
 https://www.youtube.com/watch?v=NKMHhm2Zbkw
 https://www.youtube.com/watch?v=UENds3fKssM
+https://www.youtube.com/watch?v=wEvZmBXgxO0
 
 Datos
 https://github.com/CSSEGISandData/COVID-19
@@ -14,25 +15,29 @@ AAFR, 27 de marzo del 2020
 """
 import numpy as np
 
-N = 126577691
-beta = 0.00003
-gamma = 1/15
+N = 126577691 * .70
+beta = 0.0004649569271847341
+gamma = 41196.64926689799
 
-I0 = 1215
-R0 = 28
-S0 = N-I0-R0
+I0 = 1378
+R0 = 29
+S0 = N - I0 - R0
 
 
-def sprima(I, S):
-    return -beta * I * S / N
+def sprima(i, s):
+    global beta
+    return -beta * i * s
 
 
 def iprima(I, S):
-    return (beta * I * S / N) - gamma * I
+    global beta
+    global gamma
+    return (beta * I * S) - gamma * I
 
 
 def rprima(I):
-    return gamma * I
+    global beta
+    return beta * I
 
 
 # Entrada a la rutina principal
@@ -42,7 +47,7 @@ def main():
     i = I0
     r = R0
     t = 0
-    for h in np.arange(0.0, 100.0, 0.05):
+    for h in np.arange(0.0, 100.0, 1):
         s = s + sprima(i, s) * h
         i = i + iprima(i, s) * h
         r = r + rprima(i) * h
