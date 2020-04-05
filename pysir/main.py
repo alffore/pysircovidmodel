@@ -15,7 +15,7 @@ AAFR, 27 de marzo del 2020
 import numpy as np
 
 N = 126577691
-beta = 0.00003
+beta = 0.00022435893069850434
 gamma = 1/15
 
 I0 = 1215

@@ -2,7 +2,7 @@ import csv
 from datetime import datetime
 
 datosMX = []
-N = 126577691*0.7
+N = 126577691
 
 h = 1
 
@@ -14,7 +14,8 @@ def lector(archivo):
         line_count = 0
         for row in csv_reader:
             if line_count == 0:
-                print(f'Column names are: {", ".join(row)}')
+                # print(f'Column names are: {", ".join(row)}')
+                print(f'i,a,r')
             else:
                 if row[0] == 'Mexico':
                     datosMX.append(row)
@@ -36,7 +37,8 @@ def r_param(i2, i1, i0, s0, s1):
     return aux
 
 
-archivo = '/Users/alfonso/devel/datoscovid-19/web-data/data/cases_time.csv'
+# archivo = '/Users/alfonso/devel/datoscovid-19/web-data/data/cases_time.csv'
+archivo = '/home/alfonso/devel/datoscovid-19/web-data/data/cases_time.csv'
 
 
 def main():
@@ -75,10 +77,11 @@ def main():
             s1 = N - i1 - r1
 
             if i2 > 0 and i1 > 0 and i0 > 0 and s0 - s1 != 0:
-                print(i0, i1, i2, r0, r1, s0, s1)
+                # print(i0, i1, i2, r0, r1, s0, s1)
                 a = a_param(i2, i1, i0, s0, s1)
                 r = r_param(i2, i1, i0, s0, s1)
-                print(f'i:{i} a:{a} r:{r}  aN/r:{a * N / r} r/a:{r/a}')
+                # print(f'i:{i} a:{a} r:{r}  aN/r:{a * N / r} r/a:{r/a}')
+                print(f'{i},{a},{r}')
         i += 1
 
 
