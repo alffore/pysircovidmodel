@@ -2,7 +2,7 @@ import csv
 from datetime import datetime
 
 datosMX = []
-N = 126577691
+N = 126577691.0
 
 h = 1
 
@@ -15,7 +15,7 @@ def lector(archivo):
         for row in csv_reader:
             if line_count == 0:
                 # print(f'Column names are: {", ".join(row)}')
-                print(f'i,a,r')
+                print(f'i,fecha,I,M,a,r')
             else:
                 if row[0] == 'Mexico':
                     datosMX.append(row)
@@ -25,15 +25,13 @@ def lector(archivo):
 def a_param(i2, i1, i0, s0, s1):
     aux = (i1 - i0) / i0
     aux -= (i2 - i1) / i1
-    aux /= (s0 - s1)
+    aux *= 1/(s0 - s1)
     return aux
 
 
 def r_param(i2, i1, i0, s0, s1):
-    aux = (i1 - i0) / (i0 * s0)
-    aux -= (i2 - i1) / (i1 * s1)
-    aux *= s1 * s0
-    aux /= (s0 - s1)
+    aux = s0*a_param(i2, i1, i0, s0, s1)
+    aux -= (i1 - i0) / i0
     return aux
 
 
@@ -57,16 +55,16 @@ def main():
             i1 = float(datosMX[i - 1][2])
             i0 = float(datosMX[i - 2][2])
 
-            death = datosMX[i - 2][4]
-            recover = datosMX[i - 2][3]
+            recover = datosMX[i - 2][4]
+            death = datosMX[i - 2][3]
             r0 = 0.0
             if len(death) > 0:
                 r0 += float(death)
             if len(recover) > 0:
                 r0 += float(recover)
 
-            death = datosMX[i - 1][4]
-            recover = datosMX[i - 1][3]
+            recover = datosMX[i - 1][4]
+            death = datosMX[i - 1][3]
             r1 = 0.0
             if len(death) > 0:
                 r1 += float(death)
@@ -81,7 +79,7 @@ def main():
                 a = a_param(i2, i1, i0, s0, s1)
                 r = r_param(i2, i1, i0, s0, s1)
                 # print(f'i:{i} a:{a} r:{r}  aN/r:{a * N / r} r/a:{r/a}')
-                print(f'{i},{a},{r}')
+                print(f'{i},{datosMX[i][1]},{datosMX[i][2]},{datosMX[i][3]},{a},{r},{a/r}')
         i += 1
 
 
