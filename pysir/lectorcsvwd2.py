@@ -35,8 +35,8 @@ def r_param(i2, i1, i0, s0, s1):
     return aux
 
 
-# archivo = '/Users/alfonso/devel/datoscovid-19/web-data/data/cases_time.csv'
-archivo = '/home/alfonso/devel/datoscovid-19/web-data/data/cases_time.csv'
+archivo = '/Users/alfonso/devel/datoscovid-19/web-data/data/cases_time.csv'
+# archivo = '/home/alfonso/devel/datoscovid-19/web-data/data/cases_time.csv'
 
 
 def main():
