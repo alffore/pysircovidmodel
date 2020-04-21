@@ -37,8 +37,6 @@ def r_param(i2, i1, i0, s0, s1):
 
 
 archivo = '/Users/alfonso/devel/datoscovid-19/web-data/data/cases_time.csv'
-
-
 # archivo = '/home/alfonso/devel/datoscovid-19/web-data/data/cases_time.csv'
 
 
@@ -77,12 +75,13 @@ def main():
             s0 = N - i0 - r0
             s1 = N - i1 - r1
 
+            a = None
+            r = None
             if i2 > 0 and i1 > 0 and i0 > 0 and s0 - s1 != 0:
-                # print(i0, i1, i2, r0, r1, s0, s1)
                 a = a_param(i2, i1, i0, s0, s1)
                 r = r_param(i2, i1, i0, s0, s1)
-                # print(f'i:{i} a:{a} r:{r}  aN/r:{a * N / r} r/a:{r/a}')
-                print(f'{i},{datosMX[i][1]},{datosMX[i][2]},{datosMX[i][3]},{s1},{a},{r}')
+
+            print(f'{i},{datosMX[i][1]},{datosMX[i][2]},{datosMX[i][3]},{s1},{a},{r}')
         i += 1
 
 
